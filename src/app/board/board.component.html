@@ -1,0 +1,12 @@
+<div class="board">
+  <h2 [ngStyle]="{'visibility': winner?'visible':'hidden'}">
+    Player {{ winner }} won the game!
+  </h2>
+  <h2>Current Player: {{ player }} </h2>
+  <button nbButton outline status="danger" (click)="newGame()">Start new Game</button>
+
+  <main>
+    <app-square *ngFor="let val of squares; let i = index" [value]="val" (click)="makeMove(i)">
+    </app-square>
+  </main>
+</div>
