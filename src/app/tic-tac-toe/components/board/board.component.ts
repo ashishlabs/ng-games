@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
 
 @Component({
   selector: 'app-board',
@@ -9,8 +10,9 @@ export class BoardComponent implements OnInit {
   squares: string[];
   xIsNext: boolean;
   winner: string;
-  val;
-  constructor() { }
+  val = '';
+  @ViewChild('dialog', { static: true }) dialog;
+  constructor(private dialogService: NbDialogService) { }
 
   ngOnInit() {
     this.newGame();
@@ -31,10 +33,14 @@ export class BoardComponent implements OnInit {
       this.squares.splice(idx, 1, this.player);
       this.xIsNext = !this.xIsNext;
     }
-
     this.winner = this.calculateWinner();
-    console.log('DRAW', this.winner);
-
+    if (this.winner !== null) {
+      this.dialogService.open(this.dialog, {
+        autoFocus: false,
+        closeOnBackdropClick: false,
+        backdropClass: 'backdrop'
+      });
+    }
   }
 
   calculateWinner(): any {

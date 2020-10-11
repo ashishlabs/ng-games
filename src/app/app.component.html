@@ -1,8 +1,8 @@
-<nb-layout>
-  <nb-layout-header fixed>Tic Tac Toe</nb-layout-header>
+<nb-layout center>
+  <nb-layout-header>{{GameName}}</nb-layout-header>
   <nb-layout-column class="colored-column-basic">
     <div class="container">
-      <app-board></app-board>
+      <router-outlet></router-outlet>
     </div>
   </nb-layout-column>
 </nb-layout>

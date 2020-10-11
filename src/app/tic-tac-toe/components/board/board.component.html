@@ -1,0 +1,23 @@
+<div class="board">
+  <h2>Current Player: {{ player }} </h2>
+  <main>
+    <app-square *ngFor="let val of squares; let i = index" [value]="val" (click)="makeMove(i)">
+    </app-square>
+  </main>
+</div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-body>
+      <h2 [ngStyle]="{'visibility': winner?'visible':'hidden'}">
+        Player {{ winner }} won the game!
+      </h2>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="board">
+        <button nbButton outline status="danger" (click)="newGame();ref.close()">Start new Game</button>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+
+</ng-template>
