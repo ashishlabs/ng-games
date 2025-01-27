@@ -18,8 +18,10 @@ jobs:
           node-version: "18.x"
       - run: npm install --force
       - run: npm run build:prod
+      - name: Set up Firebase credentials
+        run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}" > $HOME/firebase-service-account.json
       - uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+          GOOGLE_APPLICATION_CREDENTIALS: $HOME/firebase-service-account.json
