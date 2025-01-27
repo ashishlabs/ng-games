@@ -4,7 +4,6 @@ import { SquareComponent } from './components/square/square.component';
 import { BoardComponent } from './components/board/board.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbButtonModule, NbDialogModule, NbCardModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -16,9 +15,6 @@ import { NbButtonModule, NbDialogModule, NbCardModule } from '@nebular/theme';
   imports: [
     CommonModule,
     TicTacToeRoutingModule,
-    NbButtonModule,
-    NbDialogModule.forChild({}),
-    NbCardModule
   ]
 })
 export class TicTacToeModule { }

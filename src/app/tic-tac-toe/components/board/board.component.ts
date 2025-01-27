@@ -1,19 +1,18 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NbDialogService } from '@nebular/theme';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-board',
-    templateUrl: './board.component.html',
-    styleUrls: ['./board.component.scss'],
-    
+  selector: 'app-board',
+  templateUrl: './board.component.html',
+  styleUrls: ['./board.component.scss'],
+  standalone: false,
 })
 export class BoardComponent implements OnInit {
   squares: string[];
   xIsNext: boolean;
   winner: string;
-  val = '';
-  @ViewChild('dialog', { static: true }) dialog;
-  constructor(private dialogService: NbDialogService) { }
+  isDialogOpen = false;
+
+  constructor() { }
 
   ngOnInit() {
     this.newGame();
@@ -23,6 +22,7 @@ export class BoardComponent implements OnInit {
     this.squares = Array(9).fill(null);
     this.winner = null;
     this.xIsNext = true;
+    this.isDialogOpen = false; // Ensure dialog is closed on new game
   }
 
   get player(): string {
@@ -36,11 +36,7 @@ export class BoardComponent implements OnInit {
     }
     this.winner = this.calculateWinner();
     if (this.winner !== null) {
-      this.dialogService.open(this.dialog, {
-        autoFocus: false,
-        closeOnBackdropClick: false,
-        backdropClass: 'backdrop'
-      });
+      this.openDialog();
     }
   }
 
@@ -48,20 +44,33 @@ export class BoardComponent implements OnInit {
     const winningCombinations = [
       [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
       [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
-      [0, 4, 8], [2, 4, 6]             // Diagonals
+      [0, 4, 8], [2, 4, 6], // Diagonals
     ];
-  
+
     for (const [a, b, c] of winningCombinations) {
-      if (this.squares[a] && this.squares[a] === this.squares[b] && this.squares[a] === this.squares[c]) {
+      if (
+        this.squares[a] &&
+        this.squares[a] === this.squares[b] &&
+        this.squares[a] === this.squares[c]
+      ) {
         return this.squares[a];
       }
     }
-  
+
     // Check for a draw
-    if (this.squares.every(square => square !== null)) {
+    if (this.squares.every((square) => square !== null)) {
       return 'draw';
     }
-  
+
     return null;
+  }
+
+  openDialog() {
+    this.isDialogOpen = true;
+  }
+
+  closeDialog() {
+    this.newGame(); // Reset the game on dialog close
+    this.isDialogOpen = false;
   }
 }

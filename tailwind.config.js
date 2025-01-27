@@ -1,12 +1,10 @@
-module.exports = (isProd) => ({
-    prefix: '',
-    future: {
-      removeDeprecatedGapUtilities: true,
-      purgeLayersByDefault: true
-    },
-    purge: {
-      enabled: isProd,
-      content: ['**/*.html', '**/*.ts']
-    },
-    theme: {}
-});
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{html,ts,scss}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}

@@ -1,3 +1,17 @@
-<button nbButton  outline *ngIf="!value">{{ value }}</button>
-<button nbButton outline status="danger" *ngIf="value === 'X'">{{ value }}</button>
-<button nbButton outline status="info" *ngIf="value === 'O'">{{ value }}</button>
+<!-- Default Button -->
+<button *ngIf="!value"
+    class="px-4 py-2  text-gray-600 rounded  transition duration-300">
+    {{ value }}
+</button>
+
+<!-- Danger Button (for 'X') -->
+<button *ngIf="value === 'X'"
+    class="px-4 py-2  text-red-600 rounded  transition duration-300">
+    {{ value }}
+</button>
+
+<!-- Info Button (for 'O') -->
+<button *ngIf="value === 'O'"
+    class="px-4 py-2 text-blue-600 rounded  transition duration-300">
+    {{ value }}
+</button>

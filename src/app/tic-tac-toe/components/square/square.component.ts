@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
     selector: 'app-square',
     templateUrl: './square.component.html',
     styleUrls: ['./square.component.scss'],
-    
+    standalone: false,
 })
 export class SquareComponent {
 
