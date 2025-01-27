@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/ng-games",
+    "public": "dist/ng-games/browser",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
