@@ -22,7 +22,7 @@ export class BoardComponent implements OnInit {
     this.squares = Array(9).fill(null);
     this.winner = null;
     this.xIsNext = true;
-    this.isDialogOpen = false; // Ensure dialog is closed on new game
+    this.isDialogOpen = false; 
   }
 
   get player(): string {
